@@ -38,12 +38,6 @@ final List<Widget>_pages = [
 
 ];
 
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,11 +88,19 @@ final List<Widget>_pages = [
 
                 Padding(
                   padding: const EdgeInsets.only(left: 25),
-                  child: ListTile(
-                    leading: Icon(Icons.home, color: Colors.white),
-                    title: Text('Home', style: TextStyle(
-                      color: Colors.white
-                    ),),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context, MaterialPageRoute(
+                          builder: (context)=> HomePage()),
+                        );
+                    },
+                    child: ListTile( 
+                      leading: Icon(Icons.home, color: Colors.white),
+                      title: Text('Home', style: TextStyle(
+                        color: Colors.white
+                      ),),
+                    ),
                   ),
                   
                   ),
