@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store/components/bottom_nav_bar.dart';
+import 'package:shoe_store/pages/login_page.dart';
 
 import 'cart_page.dart';
 import 'shop_page.dart';
@@ -121,7 +122,15 @@ final List<Widget>_pages = [
             child: Padding(
               padding: const EdgeInsets.only(left: 25, bottom: 25),
               child: ListTile(
-                leading: Icon(Icons.logout, color: Colors.white),
+                leading: GestureDetector(
+                  onTap: () => Navigator.pushReplacement(
+                    context, MaterialPageRoute(
+                      builder: (context) => LoginPage())),
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Icon(Icons.logout, color: Colors.white),
+                  ),
+                  ),
                 title: Text('Logout', style: TextStyle(
                   color: Colors.white
                 ),)
