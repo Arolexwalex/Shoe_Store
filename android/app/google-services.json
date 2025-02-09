@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:789991296498:android:503ec86359be1407452f6b",
+        "android_client_info": {
+          "package_name": "Arolex_Shoes.Dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiU6GD32dBDNwFi1ojoJL0XtcpCITxCwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:789991296498:android:e59e3051aa17829f452f6b",
         "android_client_info": {
           "package_name": "com.example.shoe_store"
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCaj_KRF-P3sAgGU6leLBwjoJXT9wraQJ0"
+          "current_key": "AIzaSyAiU6GD32dBDNwFi1ojoJL0XtcpCITxCwE"
         }
       ],
       "services": {

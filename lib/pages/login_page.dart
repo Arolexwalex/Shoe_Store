@@ -91,18 +91,22 @@ class _LoginPageState extends State<LoginPage> {
                 if (_formKey.currentState!.validate()) {
 
                  try {
+
                   await 
                   _auth.signInWithEmailAndPassword(
                     _emailController.text, _passwordController.text);
+
+                    
                  
                   Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder:(context) => IntroPage()
+                    // ignore: use_build_context_synchronously
+                    context, MaterialPageRoute(
+                      builder:(context) => IntroPage()
                   ),
                   );
                 } on 
                 FirebaseAuthException catch (e) {
-                  print('Error code: ${e.code}');
-                  print('Error message: ${e.message}');
+          
                   
                   if (e.code == 'user-not-found') {
                     _errorMessage = 'User not found';
@@ -140,7 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text('Not a user?'),
                   TextButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationForm()),
+                    Navigator.push(
+                      context, MaterialPageRoute(
+                        builder: (context) => RegistrationForm()),
                     );
                   }, child: Text('Please, Sign up'),
                   ),

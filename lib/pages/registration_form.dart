@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoe_store/pages/login_page.dart';
-import 'login_page.dart';
+
 import '../authentication/authentication.dart';
 
 class RegistrationForm extends StatefulWidget {
@@ -20,8 +20,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return 
+      Scaffold(
         appBar: AppBar(
           title: Padding(
             padding: const EdgeInsets.only(bottom: 25.0, top: 25.0),
@@ -124,13 +124,28 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     _auth.createUserWithEmailAndPassword(
                       _emailController.text, _passwordController.text);
 
-                    Navigator.pushReplacement(
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Registration Successful!'),
+                        backgroundColor: Colors.green),
+                        );
+                        Future.delayed(const Duration(
+                          seconds: 2
+                        ), () {
+                          Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginPage()),
                   );
 
+                        }
+                        );
+
+                    
                   } catch (e) {
-                    print (e);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error:$e'),
+                      backgroundColor: Colors.red,),
+                    );
                   }
                   
                   // Register user here
@@ -143,7 +158,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
         
           )
           ),
-      ),
-    );
+      );
+    
   }
 }

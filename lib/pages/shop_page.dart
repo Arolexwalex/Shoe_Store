@@ -6,6 +6,8 @@ import '../models/shoe.dart';
 
 
 class ShopPage extends StatefulWidget {
+
+
   const ShopPage({super.key});
 
   @override
@@ -13,6 +15,32 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  final TextEditingController _searchController = TextEditingController();
+  List<Shoe> _searchResults = [];
+
+  void _filterSearchResults(String query) {
+    if (query.isEmpty){
+      _searchController.clear();
+     
+     _searchResults = Provider.of<Cart>(
+      context, listen: false).getShoeList();
+
+
+    } else{
+      _searchResults = 
+    Provider.of<Cart>(
+      context, 
+      listen: false).getShoeList().where((element) =>
+      element.name.toLowerCase().contains(query.toLowerCase())
+    ).toList();
+    
+  }
+  setState(() {
+      
+    });
+
+    }
+    
 
   // add shoe to cart
 
@@ -48,10 +76,24 @@ class _ShopPageState extends State<ShopPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Search', style: TextStyle(color: Colors.grey)),
-              Icon(Icons.search, color: Colors.grey),
-            ],
-          ),
+              Expanded(
+                child: TextField(
+                  
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    
+                    border: InputBorder.none,
+                    hintText: 'Search',
+                    contentPadding: EdgeInsets.symmetric(vertical: 1)
+                  ),
+                  onChanged: (query) => _filterSearchResults(query),
+                ),
+              ),
+                  Icon(Icons.search, color: Colors.grey),
+                ],
+              ),
+        
+          
         ),
         // Message
         Padding(
@@ -91,8 +133,10 @@ class _ShopPageState extends State<ShopPage> {
 
         // list of shoe
         Expanded(
-          child: ListView.builder(
-            itemCount: 4,
+          child: 
+          _searchController.text.isEmpty ?
+          ListView.builder(
+            itemCount: value.getShoeList().length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
 
@@ -106,6 +150,23 @@ class _ShopPageState extends State<ShopPage> {
                 onTap: () => addShoeToCart(shoe),
                 );
               },
+          )
+          : 
+          ListView.builder(itemCount: _searchResults.length,
+          
+          itemBuilder: (context, index) {
+            // get a shoe from search results
+
+            Shoe shoe = _searchResults[index];
+            // return the shoe
+
+          return ShoeTile(
+            shoe: shoe,
+            onTap: () => addShoeToCart(shoe),
+          );
+
+          }
+          
           ),
         ),
 

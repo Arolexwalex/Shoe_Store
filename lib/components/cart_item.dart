@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/cart.dart';
 import '../models/shoe.dart';
 
+// ignore: must_be_immutable
 class CartItem extends StatefulWidget {
   Shoe shoe;
   CartItem({super.key, required this.shoe});
